@@ -1,0 +1,111 @@
+<style>
+
+body
+{
+background: url(docker-bg.png);
+background-size: cover;
+align-items: center;
+}
+h2
+{
+color: black;
+font-family: 'Brush Script MT', cursive;
+background-color: #5fa8d3;
+}
+form
+{
+width: 50%;
+position: relative;
+height:50px;
+left: 40%;
+
+}
+
+input
+{
+width:50%;
+height:100%;
+padding-top: 20px;
+border: none;
+border-bottom:2px solid #5fa8d3;
+background-color: transparent;
+font-family: 'Brush Script MT', cursive;
+font-size: 20px;
+position : absolute;
+top: 100px;
+}
+input:focus
+{
+outline: none;
+
+}
+button
+{
+position:absolute;
+background-color: transparent;
+color: black;
+border: 2px solid #5fa8d3;
+top: 200px;
+left: 650px;
+text-align: center;
+padding: 14px 40px;
+font-size: 15px;
+font-family: 'Brush Script MT', cursive;
+color: red;
+
+}
+
+button:hover
+{
+background-color: #5fa8d3;
+color: white;
+
+}
+
+div#d1
+{
+position: absolute;
+top:400px;
+font-family: 'Brush Script MT', cursive;
+font-size: 20px;
+
+}
+div#d2
+{
+position : absolute;
+left: 500px;
+border: none;
+border-radius: 25px;
+background-color: #5fa8d3;
+padding: 2px;
+top: 40px;
+}
+
+</style>
+<script>
+function lw()
+{
+var i = document.getElementById("in1").value
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://192.168.29.185/cgi-bin/lw.py?x=" + i, true);
+
+xhr.send();
+xhr.onload = function() {
+   var output = xhr.responseText;
+   document.getElementById("d1").innerHTML = output;
+   }
+}
+
+</script>
+<body>
+<!---<div id='d2'><h2>Docker Web Application</h2></div>--->
+<pre>
+<form>
+<input type='text' id='in1' name='fname' placeholder='write your command here...'>
+</form>
+</br>
+<div id = "d1"></div>
+</pre>
+
+<button onclick="lw();">execute</button>
+</body>
